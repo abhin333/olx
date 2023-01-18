@@ -4,21 +4,36 @@ import "./Signup.css";
 import img from "../../images/olx.png";
 import { FirebaseContext } from "../../Store/FirebaseContext";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const{firebase,auth}=useContext(FirebaseContext)
+  const { firebase } = useContext(FirebaseContext);
+  const { db } = useContext(FirebaseContext);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const auth = getAuth();
+    const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        userCredential.user.updateProfile({displayname:username});
+      .then((result) => {
+        try {
+          const def=  addDoc(collection(db, "users"), {
+            id: result.user.uid,
+            username: username,
+            phone: phone,
+          }).then(() => {
+            alert("successfuly Entered")
+           navigate("/");
+          })
+        } catch (err) {
+          alert(err);
+        }
       })
+
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -28,7 +43,13 @@ export default function Signup() {
     <div>
       <img src={img} alt="img-logo" className="backgroundimg" />
       <div className="signupParentDiv">
-        <img className="img" width="200px" height="200px" alt="img" src={Logo}></img>
+        <img
+          className="img"
+          width="200px"
+          height="200px"
+          alt="img"
+          src={Logo}
+        ></img>
         <div className="from">
           <form onSubmit={handleSubmit}>
             <label htmlFor="fname">Username</label>
