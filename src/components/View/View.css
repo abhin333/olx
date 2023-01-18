@@ -1,0 +1,20 @@
+.parentdiv {
+  width: 100%;
+
+  
+}
+.childdiv {
+  background-color: #ebeeef;
+  border-radius: 4px;
+  padding: 16px 16px 32px;
+  margin: 16px 0 24px;
+  height: 200px;
+}
+.list {
+  font-size: 24px;
+  margin: 0 0 16px;
+  color: #002f34;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
