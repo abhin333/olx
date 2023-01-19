@@ -3,7 +3,7 @@ import Logo from "../../images/OLX-Logo.png";
 import "./Signup.css";
 import img from "../../images/olx.png";
 import { FirebaseContext } from "../../Store/FirebaseContext";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
@@ -20,18 +20,22 @@ const navigate = useNavigate();
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        try {
-          const def=  addDoc(collection(db, "users"), {
-            id: result.user.uid,
-            username: username,
-            phone: phone,
-          }).then(() => {
-            alert("successfuly Entered")
-           navigate("/");
-          })
-        } catch (err) {
-          alert(err);
-        }
+        updateProfile(auth.result, {
+          displayName: username,
+        }).then(() => {
+          try {
+            const def = addDoc(collection(db, "users"), {
+              id: result.user.uid,
+              username: username,
+              phone: phone,
+            }).then(() => {
+              alert("successfuly Entered");
+              navigate("/");
+            });
+          } catch (err) {
+            alert(err);
+          }
+        });
       })
 
       .catch((error) => {
