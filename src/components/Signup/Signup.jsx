@@ -5,7 +5,7 @@ import img from "../../images/olx.png";
 import { FirebaseContext } from "../../Store/FirebaseContext";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
 const navigate = useNavigate();
@@ -16,13 +16,15 @@ const navigate = useNavigate();
   const { firebase } = useContext(FirebaseContext);
   const { db } = useContext(FirebaseContext);
   const handleSubmit = (e) => {
+          console.log("ssssssssss1");
     e.preventDefault();
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        updateProfile(auth.result, {
+        updateProfile(auth.currentUser, {
           displayName: username,
-        }).then(() => {
+        })
+        console.log("eeeeeeeeeee");
           try {
             const def = addDoc(collection(db, "users"), {
               id: result.user.uid,
@@ -30,17 +32,18 @@ const navigate = useNavigate();
               phone: phone,
             }).then(() => {
               alert("successfuly Entered");
-              navigate("/");
+              navigate("/login");
             });
           } catch (err) {
             alert(err);
           }
-        });
+       
       })
 
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        alert(errorMessage)
       });
   };
   return (
@@ -104,7 +107,9 @@ const navigate = useNavigate();
             <button className="btn">Signup</button>
           </form>
         </div>
-        <a>Login</a>
+      
+          <Link to={"/login"}>Login</Link>
+        
       </div>
     </div>
   );
