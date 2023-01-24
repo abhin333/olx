@@ -4,7 +4,7 @@ import "./Sell.css";
 import { FirebaseContext, AuthContext } from "../../Store/FirebaseContext";
 import img from "../../images/olx.png";
 import { storage } from "../../Firebase/Config";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../Firebase/Config";
 import { useNavigate } from "react-router-dom";
@@ -17,31 +17,34 @@ function Sell() {
   const { firebase } = useContext(FirebaseContext);
   const { user } = useContext(AuthContext);
   const Navigate=useNavigate()
- const date = new Date();
+  const date = new Date();
   const handeleSubmit = (e) => {
     console.log("ssssaw", e);
     e.preventDefault();
     console.log("sssssss", e);
     const b = ref(storage, `/images/${image.name}`)
     uploadBytes(b, image).then(({ snapshot }) => {
-      console.log('Uploaded a blob or file!');
-    try {
-      const def = addDoc(collection(db, "product"), {
-        userId: user.uid,
-        name: name,
-        categeory: categeory,
-        price: price,
-        createdate:date.toString()
-      }).then(() => {
-        alert("successfuly Entered");
-        Navigate('/')
-      })
-    } catch (err) {
-      alert(err);
-    }
+      getDownloadURL(ref(storage, `/images/${image.name}`)).then((url) => {
+        console.log("Uploaded a blob or file!", url);
+        try {
+          const def = addDoc(collection(db, "product"), {
+            userId: user.uid,
+            name: name,
+            categeory: categeory,
+            price: price,
+            url,
+            createDate: date.toDateString(),
+          }).then(() => {
+            alert("successfuly Entered");
+            Navigate("/");
+          });
+        } catch (err) {
+          alert(err);
+        }
+      });
+      console.log("ppppppppp", b);
     });
-    console.log("ppppppppp", b);
-  };
+    };
 
   return (
     <Fragment>

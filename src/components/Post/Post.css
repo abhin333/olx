@@ -15,6 +15,10 @@
   font-size: 24px;
   color: #002f34;
 }
+.photo {
+  height: 130px;
+  width: 120px
+}
 
 .heading :last-child {
   font-size: 14px;
