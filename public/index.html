@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="data:image/png;base64,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"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -24,9 +23,10 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
+    <title>olx</title>
+</head>
+
+<body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -39,5 +39,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>

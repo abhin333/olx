@@ -7,9 +7,12 @@ import Login from "./components/Post/Login/Login";
 import { AuthContext, FirebaseContext } from "./Store/FirebaseContext";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Create from "./pages/Create";
+import View from "./pages/view"
+import Post from "./Store/PostContext"
 const App = () => {
   const auth = getAuth();
-  const {user,setUser } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
+  
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user)
@@ -18,20 +21,25 @@ const App = () => {
   }, []);
   return (
     <div>
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-        </Routes>
-        <Routes>
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-        </Routes>
-        <Routes>
-          <Route path="/create" element={<Create/>} />
-        </Routes>
-      </Router>
+      <Post>
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+          </Routes>
+          <Routes>
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+          <Routes>
+            <Route path="/create" element={<Create />} />
+          </Routes>
+          <Routes>
+            <Route path="/view" element={<View />} />
+          </Routes>
+        </Router>
+      </Post>
     </div>
   );
 };

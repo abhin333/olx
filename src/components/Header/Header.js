@@ -63,7 +63,7 @@ function Header() {
                   });
               }}
             >
-              LogOut
+              Logout
             </span>
           )}
           <div className="sellMenu">

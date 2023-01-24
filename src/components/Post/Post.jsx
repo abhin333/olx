@@ -13,24 +13,25 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "../../Firebase/Config";
+import { PostContext } from "../../Store/PostContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Post() {
   const { firebase } = useContext(FirebaseContext);
   const [product, setProduct] = useState([]);
+  const { setPostDetails } = useContext(PostContext);
+  const navigate=useNavigate()
   const fetchBlogs = async (e) => {
     const q = query(collection(db, "product"));
     const querySnapshot = await getDocs(q);
     const allPost = querySnapshot.docs.map((product) => {
-      console.log("p",  product._document.data.value.mapValue.fields );
       return {
         ...product.data(),
         id: product.id,
       };
     });
     setProduct(allPost);
-    console.log("ddd");
   };
-  console.log("rrrrr",product);
   useEffect(() => {
     fetchBlogs();
   }, []);
@@ -45,7 +46,10 @@ function Post() {
           {product.map((products ) => {
             console.log("wwww", products.id );
           return(
-            <div className="card">
+            <div className="card" onClick={() => {
+              setPostDetails(products)
+              navigate('/view')
+            }}>
               <div className="favorite">
                 <Heart />
               </div>
