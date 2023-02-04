@@ -45,9 +45,13 @@ function Header() {
           </div>
 
           <div className="loginPage">
-            <span onClick={() => {
-              Navigate('/login')
-            }}>{user ? user.displayName : 'login'}</span>
+            <span
+              onClick={() => {
+                Navigate("/login");
+              }}
+            >
+              {user ? user.displayName : "login"}
+            </span>
             <hr />
           </div>
           {user && (
@@ -70,7 +74,7 @@ function Header() {
             <Sellbtn />
             <div className="sellMenuContent">
               <Plusbtn />
-              <span>SELL</span>
+              <span onClick={() => Navigate("/create")}>SELL</span>
             </div>
           </div>
         </div>

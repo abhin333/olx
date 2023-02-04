@@ -15,7 +15,6 @@ function Login() {
   const { firebase,db } = useContext(FirebaseContext)
   const handleClick = (event) => {
     event.preventDefault()
-    console.log(event);
     signInWithEmailAndPassword(auth, email, password).then((result) => {
       console.log("sssssssss5", result.user);
       const user = result.user;

@@ -17,7 +17,41 @@
   margin-top: 3em;
   width: 30vw;
 }
+.button{
+  display: flex;
+  padding-top: 5px;
+  justify-content:space-evenly;
+  
 
+}
+/* CSS */
+.button-3 {
+  appearance: none;
+  background-color: #8561e9;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(35, 31, 27, 0.1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.button-3:hover {
+  background-color: #2c974b;
+}
 .viewParentDiv .rightSection .productDetails :first-child {
   font-weight: 700;
   margin-bottom: 8px;
@@ -27,25 +61,21 @@
   margin-bottom: 20px;
 }
 
-.viewParentDiv .rightSection .productDetails {
+  .productDetails {
   border: 1px solid black;
-  padding: 6px;
+  padding: 2px;
   border-radius: 6px;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   width: 100%;
 }
 
-.viewParentDiv .rightSection .contactDetails {
+  .contactDetails {
   border: 1px solid black;
-  padding: 6px;
   border-radius: 6px;
 }
 
-.viewParentDiv .rightSection .contactDetails :first-child {
-  font-size: 20px;
+.viewParentDiv  .contactDetails {
+  font-size: 17px;
   line-height: 24px;
-  font-weight: 700;
-  color: #002f34;
-  font-weight: 400;
   padding: 0;
 }

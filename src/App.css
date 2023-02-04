@@ -1,9 +1,18 @@
 *{
     margin: 0;
 }
-.rui-77aaa{
+.rui-77aaa {
     fill: #002f34;
     cursor: pointer;
+}
+.rui-77aa{
+    fill: #002f34;
+    cursor: pointer;
+}
+
+svg:hover .rui-77aa{
+     fill: red;
+     
 }
 .logo{
     margin-left: 14px;

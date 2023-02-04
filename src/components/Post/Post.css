@@ -40,7 +40,7 @@
   margin-right: 15px;
   padding: 13px;
   max-width: 222px;
-  height: 220px;
+  height: 250px;
   display: inline-block;
   background-color: white;
   cursor: pointer;
@@ -67,7 +67,7 @@
   text-align: center;
 }
 .card .content .rate {
-  margin-top: 10px;
+  margin-top: -10px;
   font-size: larger;
   font-weight: bold;
 }
@@ -81,6 +81,7 @@
   display: flex;
   justify-content: flex-end;
   font-size: small;
+  margin-top: -10px;
 }
 
 .recommendations {
