@@ -30,8 +30,8 @@ function Banner() {
           </div>
         </div>
       </div>
-      <div className="bannerimg">
-        <img src={banner} alt="banner" />
+      <div >
+        <img src={banner} alt="banner" className="bannerimg" />
       </div>
     </>
   );

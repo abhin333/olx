@@ -1,6 +1,6 @@
 .header {
   background-color: #ebeeef;;
-  min-width: 100%;
+  width: 100%;
   height: 58px;
   padding: 10px 46px;
   position: fixed;
@@ -16,7 +16,7 @@
 
 .searchicon {
   width: 16em;
-  height: 40px;
+  height: 46px;
   display: flex;
   align-items: center;
   padding: 0 8px;
@@ -46,7 +46,7 @@
 }
 .product {
   width: 32em;
-  height: 40px;
+  height: 46px;
   display: flex;
   align-items: center;
   padding: 0 8px;
@@ -80,7 +80,7 @@
 }
 .language {
   display: flex;
-  width: 9%;
+  width: 7rem;
   cursor: pointer;
   color: #002f34;
   justify-content: flex-end;
@@ -159,4 +159,23 @@
 }
 ._25SUV ._32cGm._3Vwmt {
   fill: #fff;
+}
+@media only screen and (max-width: 1024px)  {
+   .searchicon {
+    display: none;
+  }
+ 
+}
+
+@media only screen and (max-width: 665px)  {
+  .product {
+    display: none;
+  }
+  .sellMenu{
+   margin-left: 2rem;
+  }
+
+.language{
+  display: none;
+}
 }
